@@ -6,13 +6,14 @@ CREATE TABLE t_clients (
 	IdClient int(4) PRIMARY KEY AUTO_INCREMENT,
 	firstname varchar(20) NOT NULL,
 	lastname varchar(30) NOT NULL,
-	email varchar(50),
+	email varchar(50) NOT NULL,
+	password varchar(30) NOT NULL,
 	address varchar(100)
 ) ENGINE = InnoDB;
 
-INSERT INTO t_clients (firstname, lastname, email, address) VALUES ('Tristan', 'Laclau', 'tlaclau@mail.com','Ondres');
-INSERT INTO t_clients (firstname, lastname, email, address) VALUES ('Sebastien', 'Allaire', 'sallaire@mail.com','Tyrosse');
-INSERT INTO t_clients (firstname, lastname, email, address) VALUES ('Eric', 'Mauler', 'emauler@mail.com','Dordogne');
+INSERT INTO t_clients (firstname, lastname, email, password, address) VALUES ('Tristan', 'Laclau', 'tlaclau@mail.com', 'tl','Ondres');
+INSERT INTO t_clients (firstname, lastname, email, password, address) VALUES ('Sebastien', 'Allaire', 'sallaire@mail.com', 'sa','St-Geours');
+INSERT INTO t_clients (firstname, lastname, email, password, address) VALUES ('Eric', 'Mauler', 'emauler@mail.com','em','Dordogne');
 
 CREATE TABLE t_books (
 	IdBook int(4) PRIMARY KEY AUTO_INCREMENT,

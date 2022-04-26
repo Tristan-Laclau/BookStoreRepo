@@ -2,17 +2,17 @@ package fr.fms.entities;
 
 public class Client {
 	
-	private int id;
+	private int idClient;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String address;
 	
 	public int getId() {
-		return id;
+		return idClient;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.idClient = id;
 	}
 	public String getFirstName() {
 		return firstName;
