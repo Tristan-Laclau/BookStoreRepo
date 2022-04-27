@@ -6,12 +6,28 @@ public class Client {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String password;
 	private String address;
 	
-	public int getId() {
+	public Client(int idClient, String firstName, String lastName, String email, String password, String address) {
+		this.idClient = idClient;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.address = address;
+	}
+	public Client(String firstName, String lastName, String email, String password, String address) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.address = address;
+	}
+	public int getIdClient() {
 		return idClient;
 	}
-	public void setId(int id) {
+	public void setIdClient(int id) {
 		this.idClient = id;
 	}
 	public String getFirstName() {
@@ -32,6 +48,12 @@ public class Client {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getAddress() {
 		return address;
 	}
@@ -39,5 +61,8 @@ public class Client {
 		this.address = address;
 	}
 
+	public String toString() {
+		return "Client : " +getFirstName() + " " + getLastName() + " " + getEmail() + " " + getAddress();
+	}
 
 }

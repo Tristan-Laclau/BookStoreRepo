@@ -7,6 +7,12 @@ public class Order {
 	private String date;
 	private double totalPrice;
 	
+	public Order(int idOrder, int idClient, String date, float totalPrice) {
+		this.idOrder = idOrder;
+		this.idClient = idClient;
+		this.date = date;
+		this.totalPrice = totalPrice;
+	}
 	public int getIdOrder() {
 		return idOrder;
 	}
