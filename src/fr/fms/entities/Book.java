@@ -9,6 +9,7 @@ public class Book {
 	private String description;
 	private float price;
 	private boolean isUsed;
+	private int quantity = 1;
 	
 	public Book(String title, String author, String description, float price) {
 		this.title = title;
@@ -67,7 +68,12 @@ public class Book {
 	public void setUsed(boolean isUsed) {
 		this.isUsed = isUsed;
 	}
-	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	public String toString() {
 		return " Title : "+ this.getTitle()+" | Author : "+ this.getAuthor();
 	}

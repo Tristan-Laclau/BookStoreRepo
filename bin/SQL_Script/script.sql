@@ -31,12 +31,11 @@ CREATE TABLE t_orders (
 	IdOrder int(4) PRIMARY KEY AUTO_INCREMENT,
 	IdClient int(4) NOT NULL,
 	FOREIGN KEY (IdClient) REFERENCES t_clients(IdClient),
-	Date varchar(8) NOT NULL,
 	price float(8) NOT NULL DEFAULT 0
 ) ENGINE = InnoDB;
 
-INSERT INTO t_orders (IdClient, Date, price) VALUES ( 1 , '27/04/22' , 10);
-INSERT INTO t_orders (IdClient, Date, price) VALUES ( 2 , '27/04/22', 20);
+INSERT INTO t_orders (IdClient, price) VALUES ( 1 , 10);
+INSERT INTO t_orders (IdClient, price) VALUES ( 2 , 20);
 
 CREATE TABLE t_themes (
 	IdTheme int(4) PRIMARY KEY AUTO_INCREMENT,

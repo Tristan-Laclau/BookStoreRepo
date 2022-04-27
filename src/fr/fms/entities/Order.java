@@ -4,18 +4,15 @@ public class Order {
 	
 	private int idOrder;
 	private int idClient;
-	private String date;
-	private double totalPrice = 0;
+	private float totalPrice = 0;
 	
-	public Order(int idOrder, int idClient, String date, float totalPrice) {
+	public Order(int idOrder, int idClient, float totalPrice) {
 		this.idOrder = idOrder;
 		this.idClient = idClient;
-		this.date = date;
 		this.totalPrice = totalPrice;
 	}
-	public Order(int idClient, String date) {
+	public Order(int idClient) {
 		this.idClient = idClient;
-		this.date = date;
 	}
 	public int getIdOrder() {
 		return idOrder;
@@ -29,20 +26,14 @@ public class Order {
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
-	}
 	public double getTotalPrice() {
 		return totalPrice;
 	}
-	public void setTotalPrice(double totalPrice) {
+	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 	
 	public String toString() {
-		return ""+getIdClient()+" "+getDate()+" "+getTotalPrice();
+		return ""+getIdClient()+" "+getTotalPrice();
 	}
 }

@@ -13,7 +13,7 @@ public class testOrderDao {
 
 			OrderDao orderDao = new OrderDao();
 
-			Order newOrder = new Order(2,"10/10/10");
+			Order newOrder = new Order(2);
 
 			orderDao.create(newOrder);
 
@@ -27,7 +27,7 @@ public class testOrderDao {
 
 			System.out.println();
 
-			newOrder.setDate("11/11/11");
+			newOrder.setTotalPrice(10);
 			orderDao.update(newOrder);
 			
 			System.out.println("After update : "+ orderDao.read(newOrder.getIdOrder()));

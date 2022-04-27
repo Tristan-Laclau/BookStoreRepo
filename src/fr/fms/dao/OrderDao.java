@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import fr.fms.entities.Order;
 
 public class OrderDao implements Dao<Order> {
@@ -11,8 +12,8 @@ public class OrderDao implements Dao<Order> {
 	@Override
 	public void create(Order obj) {
 		try(Statement statement = connection.createStatement()){
-			String str = "INSERT INTO t_orders (idOrder, idClient, date, price) "
-					+ "VALUES ('" +obj.getIdOrder()+ "' ,'" + obj.getIdClient() + "' , '" + obj.getDate() + "' , " + obj.getTotalPrice() + " );";
+			String str = "INSERT INTO t_orders (idOrder, idClient, price) "
+					+ "VALUES (" +obj.getIdOrder()+ " ," + obj.getIdClient() + " , " + obj.getTotalPrice() + " );";
 			int row = statement.executeUpdate(str);
 			if (row == 1) System.out.println("Insertion ok");
 		}catch (SQLException e) {
@@ -31,10 +32,9 @@ public class OrderDao implements Dao<Order> {
 			rs.next();
 			int idOrder = rs.getInt(1);
 			int idClient = rs.getInt(2);
-			String date = rs.getString(3);
-			float totalPrice = rs.getFloat(4);
+			float totalPrice = rs.getFloat(3);
 			
-			Order order = new Order(idOrder,idClient,date,totalPrice);
+			Order order = new Order(idOrder,idClient,totalPrice);
 			
 			return order;
 			
@@ -52,7 +52,7 @@ public class OrderDao implements Dao<Order> {
 	public boolean update(Order obj) {
 		
 		String str = "UPDATE t_orders "
-				+ "SET idOrder = '"+ obj.getIdOrder()+"' , idClient = '"+obj.getIdClient() +"' , date = '"+ obj.getDate() +"' , price = "+ obj.getTotalPrice() + " "
+				+ "SET idOrder = '"+ obj.getIdOrder()+"' , idClient = '"+obj.getIdClient() +"' , price = "+ obj.getTotalPrice() + " "
 				+ "WHERE idOrder = "+ obj.getIdOrder() + " ;";
 		
 		try(Statement statement = connection.createStatement()){
