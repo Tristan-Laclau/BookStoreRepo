@@ -50,19 +50,59 @@ public class OrderDao implements Dao<Order> {
 
 	@Override
 	public boolean update(Order obj) {
-		// TODO Auto-generated method stub
+		
+		String str = "UPDATE t_orders "
+				+ "SET idOrder = '"+ obj.getIdOrder()+"' , idClient = '"+obj.getIdClient() +"' , date = '"+ obj.getDate() +"' , totalPrice = "+ obj.getTotalPrice() + " "
+				+ "WHERE idOrder = "+ obj.getIdOrder() + " ;";
+		
+		try(Statement statement = connection.createStatement()){
+			return statement.execute(str);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
+		
+		try(Statement statement = connection.createStatement()){
+
+			String str = "DELETE "
+				+ "FROM t_orders "
+				+ "WHERE idOrder = " + id + " ;";
+		
+			return statement.execute(str);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
 
 	@Override
 	public ArrayList<Order> readAll() {
-		// TODO Auto-generated method stub
+		ArrayList<Order> allOrders = new ArrayList<Order>();
+		
+		try(Statement statement = connection.createStatement()){
+			String str = "SELECT * FROM t_orders;";
+			statement.execute(str);
+			try (ResultSet rs = statement.getResultSet()){
+				
+				while(rs.next()) {
+					allOrders.add(read(rs.getInt(1)));
+				}
+				
+				return allOrders;
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
