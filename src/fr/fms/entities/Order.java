@@ -1,10 +1,13 @@
 package fr.fms.entities;
 
+import java.util.ArrayList;
+
 public class Order {
 	
 	private int idOrder;
 	private int idClient;
 	private float totalPrice = 0;
+	private ArrayList<Book> bookList;
 	
 	public Order(int idOrder, int idClient, float totalPrice) {
 		this.idOrder = idOrder;
@@ -13,6 +16,10 @@ public class Order {
 	}
 	public Order(int idClient) {
 		this.idClient = idClient;
+	}
+	public Order(int idClient, float totalPrice) {
+		this.idClient = idClient;
+		this.totalPrice = totalPrice;
 	}
 	public int getIdOrder() {
 		return idOrder;
@@ -33,6 +40,12 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 	
+	public ArrayList<Book> getBookList() {
+		return bookList;
+	}
+	public void setBookList(ArrayList<Book> bookList) {
+		this.bookList = bookList;
+	}
 	public String toString() {
 		return ""+getIdClient()+" "+getTotalPrice();
 	}

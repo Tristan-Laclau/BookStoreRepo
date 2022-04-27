@@ -48,11 +48,9 @@ public class IBusinessImpl implements IBusiness{
 	@Override
 	public void checkout(int idClient) {
 		if(clientDao.read(idClient) != null) {
-			Order order = new Order(idClient);
+			Order order = new Order(idClient,getTotal());
+			order.setBookList(getCart());
 			orderDao.create(order);
-				for(Book book : cart.values()) {
-					//créer relation en base???
-				}
 			}
 		}
 
@@ -76,4 +74,24 @@ public class IBusinessImpl implements IBusiness{
 		return bookDao.readByTheme(idTheme);
 	}
 
+	public float getTotal() {
+		float [] total = {0};
+		cart.values().forEach((b) -> total[0] += b.getPrice() * b.getQuantity());
+		return total[0];
+	}
+	
+	public boolean isClient(String email, String password) {
+		for (Client client : clientDao.readAll()) {
+			if(client.getEmail().equalsIgnoreCase(email) && client.getPassword().equals(password)) return true;
+		}
+		return false;
+	}
+	
+	public boolean isCartEmpty() {
+		return cart.isEmpty();
+	}
+	
+	public void clearCart() {
+		cart.clear();
+	}
 }
