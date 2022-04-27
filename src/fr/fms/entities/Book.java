@@ -7,8 +7,30 @@ public class Book {
 	private String title;
 	private String author;
 	private String description;
-	private double price;
+	private float price;
 	private boolean isUsed;
+	
+	public Book(String title, String author, String description, float price) {
+		this.title = title;
+		this.author = author;
+		this.description = description;
+		this.price = price;
+	}
+	public Book(int idBook, String title, String author, String description, float price) {
+		this.idBook = idBook;
+		this.title = title;
+		this.author = author;
+		this.description = description;
+		this.price = price;
+	}
+	public Book(Book book) {
+		this.idBook = book.getIdBook();
+		this.title = book.getTitle();
+		this.author = book.getAuthor();
+		this.description = book.getDescription();
+		this.price = book.getPrice();
+		this.isUsed = book.isUsed();
+	}
 	public int getIdBook() {
 		return idBook;
 	}
@@ -33,10 +55,10 @@ public class Book {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public double getPrice() {
+	public float getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 	public boolean isUsed() {
@@ -46,5 +68,8 @@ public class Book {
 		this.isUsed = isUsed;
 	}
 	
+	public String toString() {
+		return " Title : "+ this.getTitle()+" | Author : "+ this.getAuthor();
+	}
 	
 }
