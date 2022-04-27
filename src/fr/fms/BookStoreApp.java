@@ -17,7 +17,7 @@ public class BookStoreApp {
 	
 	private static IBusinessImpl job = new IBusinessImpl();
 	
-	private static int idClient = -1;
+	private static int idClient;
 	
 
 	public static boolean login() {
@@ -72,11 +72,8 @@ public class BookStoreApp {
 			switch(input) {
 			case 1:
 				System.out.println("Thank you for your purchase");
-				
-				if (idClient == -1) login();
 				job.checkout(idClient);
 				job.clearCart();
-				System.out.println("Cart emptied");
 				break;
 			case 2:
 				System.out.println("Returning to menu");
@@ -91,6 +88,8 @@ public class BookStoreApp {
 	}
 	
 	public static void createAccount() {
+		
+		System.out.println("Account does not exist, cannot create account yet, please contact your admin");
 		
 	}
 
@@ -213,7 +212,7 @@ public class BookStoreApp {
 				displayMenu();
 			}else {
 				createAccount();
-				displayMenu();
+				//displayMenu();
 			}
 
 
