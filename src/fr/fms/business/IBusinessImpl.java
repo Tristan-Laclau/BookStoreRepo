@@ -60,26 +60,22 @@ public class IBusinessImpl implements IBusiness{
 
 	@Override
 	public ArrayList<Book> readAllBooks() {
-		// TODO Auto-generated method stub
-		return null;
+		return bookDao.readAll();
 	}
 
 	@Override
 	public Book readBook(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookDao.read(id);
 	}
 
 	@Override
 	public ArrayList<Theme> readAllThemes() {
-		// TODO Auto-generated method stub
-		return null;
+		return themeDao.readAll();
 	}
 
 	@Override
 	public ArrayList<Book> readBookByTheme(int idTheme) {
-		// TODO Auto-generated method stub
-		return null;
+		return bookDao.readbyTheme(idTheme);
 	}
 
 }

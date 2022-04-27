@@ -112,5 +112,24 @@ public class BookDao implements Dao<Book>{
 		}
 		return null;
 	}
+	
+	public ArrayList<Book> readByTheme(int idTheme){
+		
+		ArrayList<Book> result = new ArrayList<Book>();
+		
+		String str = "SELECT * FROM t_books JOIN book_details ON t_books.idBook = book_details.idBook JOIN t_themes ON t_themes.idTheme = book_details.idTheme WHERE t_themes.idTheme = "+ idTheme+ " ;";
+		try(Statement statement = connection.createStatement()){
+			statement.execute(str);
+			try(ResultSet rs = statement.getResultSet()){
+				while (rs.next()) {
+					result.add(read(rs.getInt(1)));
+				}
+				return result;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }
