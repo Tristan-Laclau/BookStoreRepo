@@ -5,13 +5,17 @@ public class Order {
 	private int idOrder;
 	private int idClient;
 	private String date;
-	private double totalPrice;
+	private double totalPrice = 0;
 	
 	public Order(int idOrder, int idClient, String date, float totalPrice) {
 		this.idOrder = idOrder;
 		this.idClient = idClient;
 		this.date = date;
 		this.totalPrice = totalPrice;
+	}
+	public Order(int idClient, String date) {
+		this.idClient = idClient;
+		this.date = date;
 	}
 	public int getIdOrder() {
 		return idOrder;
@@ -38,4 +42,7 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 	
+	public String toString() {
+		return ""+getIdClient()+" "+getDate()+" "+getTotalPrice();
+	}
 }

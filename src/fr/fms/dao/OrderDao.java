@@ -11,7 +11,7 @@ public class OrderDao implements Dao<Order> {
 	@Override
 	public void create(Order obj) {
 		try(Statement statement = connection.createStatement()){
-			String str = "INSERT INTO t_orders (idOrder, idClient, date, totalPrice) "
+			String str = "INSERT INTO t_orders (idOrder, idClient, date, price) "
 					+ "VALUES ('" +obj.getIdOrder()+ "' ,'" + obj.getIdClient() + "' , '" + obj.getDate() + "' , " + obj.getTotalPrice() + " );";
 			int row = statement.executeUpdate(str);
 			if (row == 1) System.out.println("Insertion ok");
@@ -52,7 +52,7 @@ public class OrderDao implements Dao<Order> {
 	public boolean update(Order obj) {
 		
 		String str = "UPDATE t_orders "
-				+ "SET idOrder = '"+ obj.getIdOrder()+"' , idClient = '"+obj.getIdClient() +"' , date = '"+ obj.getDate() +"' , totalPrice = "+ obj.getTotalPrice() + " "
+				+ "SET idOrder = '"+ obj.getIdOrder()+"' , idClient = '"+obj.getIdClient() +"' , date = '"+ obj.getDate() +"' , price = "+ obj.getTotalPrice() + " "
 				+ "WHERE idOrder = "+ obj.getIdOrder() + " ;";
 		
 		try(Statement statement = connection.createStatement()){
