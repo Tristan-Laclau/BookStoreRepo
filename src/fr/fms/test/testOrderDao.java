@@ -29,6 +29,7 @@ public class testOrderDao {
 
 			newOrder.setDate("11/11/11");
 			orderDao.update(newOrder);
+			
 			System.out.println("After update : "+ orderDao.read(newOrder.getIdOrder()));
 
 			System.out.println();
