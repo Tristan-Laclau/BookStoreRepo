@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import fr.fms.entities.Book;
 import fr.fms.entities.Order;
 
 public class OrderDao implements Dao<Order> {
@@ -103,6 +104,12 @@ public class OrderDao implements Dao<Order> {
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
+	}
+
+	@Override
+	public ArrayList<Book> readByTheme(int idTheme) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

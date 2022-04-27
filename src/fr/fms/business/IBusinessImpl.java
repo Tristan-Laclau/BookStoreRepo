@@ -1,9 +1,7 @@
 package fr.fms.business;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-
 import fr.fms.dao.Dao;
 import fr.fms.dao.DaoFactory;
 import fr.fms.entities.Book;
@@ -75,7 +73,7 @@ public class IBusinessImpl implements IBusiness{
 
 	@Override
 	public ArrayList<Book> readBookByTheme(int idTheme) {
-		return bookDao.readbyTheme(idTheme);
+		return bookDao.readByTheme(idTheme);
 	}
 
 }

@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import fr.fms.entities.Book;
 import fr.fms.entities.Client;
 
 public class ClientDao implements Dao<Client>{
@@ -108,6 +110,12 @@ public class ClientDao implements Dao<Client>{
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
+	}
+
+	@Override
+	public ArrayList<Book> readByTheme(int idTheme) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
