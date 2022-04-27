@@ -21,7 +21,7 @@ public class OrderDao implements Dao<Order> {
 			if(obj.getBookList() != null) {
 				for (int i = 0 ; i < obj.getBookList().size() ; i++) {
 
-					str = "INSERT INTO order_details (idOrder,idBook,amount) VALUES ("+ obj.getIdOrder()+" , " +obj.getBookList().get(i).getIdBook()+" , "+ obj.getBookList().get(i).getQuantity()+ " ;";
+					str = "INSERT INTO order_details (IdOrder,IdBook,amount) VALUES ("+ obj.getIdOrder()+" , " +obj.getBookList().get(i).getIdBook()+" , "+ obj.getBookList().get(i).getQuantity()+ ") ;";
 					statement.execute(str);	
 				}
 			}

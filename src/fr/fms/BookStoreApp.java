@@ -175,7 +175,7 @@ public class BookStoreApp {
 		case 4:
 			
 			for (Book b : job.getCart()) {
-				System.out.println(b);
+				System.out.println(b + " x " + b.getQuantity());
 			}
 			displayMenu();
 			break;
