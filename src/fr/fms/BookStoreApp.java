@@ -14,6 +14,7 @@ import fr.fms.dao.DbConnect;
 import fr.fms.entities.Book;
 import fr.fms.entities.Client;
 import fr.fms.entities.Order;
+import fr.fms.entities.Theme;
 
 public class BookStoreApp {
 
@@ -68,13 +69,13 @@ public class BookStoreApp {
 		int input = 0;
 
 		if(!job.isCartEmpty()) {
-			
-				System.out.println("Your cart : ");
 
-				format  = "%1$-50s | %2$-20s | %3$-10s | %4$-10s |\n";
-				System.out.format(format, "Title", "Author","Price", "Quantity");
-				System.out.println(String.join("", Collections.nCopies(100, "-")));
-				for (Book b : job.getCart()) System.out.format(format, b.getTitle(),b.getAuthor(),b.getPrice(),b.getQuantity());	
+			System.out.println("Your cart : ");
+
+			format  = "%1$-50s | %2$-20s | %3$-10s | %4$-10s |\n";
+			System.out.format(format, "Title", "Author","Price", "Quantity");
+			System.out.println(String.join("", Collections.nCopies(100, "-")));
+			for (Book b : job.getCart()) System.out.format(format, b.getTitle(),b.getAuthor(),b.getPrice(),b.getQuantity());	
 
 			System.out.println("Press 1 to confirm ; 2 to go back to menu");
 
@@ -152,7 +153,8 @@ public class BookStoreApp {
 		System.out.println("4 : Display cart");
 		System.out.println("5 : Place an order");
 		System.out.println("6 : Viewing previously placed order"); //For educational purposes
-		System.out.println("7 : Leave");
+		System.out.println("7 : Search book by theme");
+		System.out.println("8 : Leave");
 
 		while(!scan.hasNextInt())scan.next();
 
@@ -282,6 +284,35 @@ public class BookStoreApp {
 			break;
 
 		case 7:
+
+			System.out.println("Enter the ID of the theme you want");
+
+			format = "%1$-5s | %2$-30s |\n";
+			System.out.format(format, "ID", "Theme");
+			System.out.println(String.join("", Collections.nCopies(40, "-")));
+			for (Theme t : job.readAllThemes()) {
+				System.out.format(format, t.getIdTheme(),t.getName());
+			}
+
+			while(!scan.hasNextInt())scan.next();
+			input = scan.nextInt();
+
+			if(input > job.readAllThemes().size() || input < 1) {
+				System.out.println("Wrong input, please try again");
+			}else {
+
+				format = "%1$-50s | %2$-20s | %3$-10s |\n";
+				System.out.format(format,"Title", "Author","Price");
+				System.out.println(String.join("", Collections.nCopies(90, "-")));
+				for(Book b :job.readBookByTheme(input)) System.out.format(format,b.getTitle(),b.getAuthor(),b.getPrice());
+			}
+
+			System.out.println();
+			displayMenu();
+
+			break;
+
+		case 8:
 
 			System.out.println("Thank you for visiting our shop, see you soon!");
 
