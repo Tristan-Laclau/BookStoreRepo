@@ -10,6 +10,7 @@ import fr.fms.dao.ClientDao;
 import fr.fms.dao.DbConnect;
 import fr.fms.entities.Book;
 import fr.fms.entities.Client;
+import fr.fms.entities.Order;
 
 public class BookStoreApp {
 
@@ -19,13 +20,13 @@ public class BookStoreApp {
 	
 	private static int idClient;
 	
+	private static String email;
+	private static String password;
+	
 
 	public static boolean login() {
 		
 		System.out.println("Welcome to the authentification page");
-
-		String email;
-		String password;
 
 		ArrayList<Client> clientList = new ArrayList<>();
 
@@ -89,7 +90,7 @@ public class BookStoreApp {
 	
 	public static void createAccount() {
 		
-		System.out.println("Account does not exist, cannot create account yet, please contact your admin");
+		System.out.println("Account does not exist");
 		
 	}
 
@@ -104,7 +105,8 @@ public class BookStoreApp {
 		System.out.println("3 : Remove a book from cart");
 		System.out.println("4 : Display cart");
 		System.out.println("5 : Place an order");
-		System.out.println("6 : Leave");
+		System.out.println("6 : Viewing previously placed order"); //For educational purposes
+		System.out.println("7 : Leave");
 
 		while(!scan.hasNextInt())scan.next();
 
@@ -136,7 +138,7 @@ public class BookStoreApp {
 			try {
 				BookDao bookDao = new BookDao();
 				bookToAdd = bookDao.read(input);
-				bookToAdd.getIdBook(); //Si article est null, renvoie une exception ce qui nous fait passer dans le catch
+				bookToAdd.getIdBook();
 				job.addToCart(bookToAdd);
 				System.out.println("Book added to cart");
 			}
@@ -162,7 +164,7 @@ public class BookStoreApp {
 			try {
 				BookDao bookDao = new BookDao();
 				bookToRemove = bookDao.read(input);
-				job.getCart().get(bookToRemove.getIdBook()); //Si article est null, renvoie une exception ce qui nous fait passer dans le catch
+				job.getCart().get(bookToRemove.getIdBook());
 				job.removeFromCart(bookToRemove);
 				System.out.println("Book removed from cart");
 			}
@@ -188,6 +190,19 @@ public class BookStoreApp {
 			break;
 			
 		case 6:
+			
+			System.out.println("Here are all the orders you placed so far");
+			for (Order o : job.readOrderByClient(idClient)) {
+				System.out.println("Order #"+o.getIdOrder());
+				for(Book b : o.getBookList()) System.out.println(b);
+				System.out.println("Price : "+ o.getTotalPrice());
+				System.out.println("--------------------------");
+			};
+			displayMenu();
+			
+			break;
+			
+		case 7:
 			
 			System.out.println("Thank you for visiting our shop, see you soon!");
 			

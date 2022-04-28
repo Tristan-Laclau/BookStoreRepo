@@ -21,6 +21,12 @@ public class Order {
 		this.idClient = idClient;
 		this.totalPrice = totalPrice;
 	}
+	public Order(Order order) {
+		this.idOrder = order.idOrder;
+		this.idClient = order.idClient;
+		this.totalPrice = order.totalPrice;
+		this.bookList = order.bookList;
+	}
 	public int getIdOrder() {
 		return idOrder;
 	}

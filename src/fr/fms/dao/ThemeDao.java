@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import fr.fms.entities.Book;
 import fr.fms.entities.Theme;
 
 public class ThemeDao implements Dao<Theme> {
@@ -107,7 +105,13 @@ public class ThemeDao implements Dao<Theme> {
 	}
 
 	@Override
-	public ArrayList<Book> readByTheme(int idTheme) {
+	public ArrayList<Theme> readBookByTheme(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Theme> readOrderByClient(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

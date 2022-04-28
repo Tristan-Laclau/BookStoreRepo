@@ -34,7 +34,7 @@ CREATE TABLE t_orders (
 	price float(8) NOT NULL DEFAULT 0
 ) ENGINE = InnoDB;
 
-INSERT INTO t_orders (IdClient, price) VALUES ( 1 , 10);
+INSERT INTO t_orders (IdClient, price) VALUES ( 1 , 15);
 INSERT INTO t_orders (IdClient, price) VALUES ( 2 , 20);
 
 CREATE TABLE t_themes (
@@ -53,6 +53,9 @@ CREATE TABLE order_details (
 	 FOREIGN KEY (IdBook) REFERENCES t_books(IdBook),
 	amount int(2)
 ) ENGINE = InnoDB;
+
+INSERT INTO order_details (IdOrder, IdBook, amount) VALUES ( 1 , 1 , 1);
+INSERT INTO order_details (IdOrder, IdBook, amount) VALUES ( 2 , 2 , 2);
 
 CREATE TABLE book_details (
 	IdTheme int(4) NOT NULL,

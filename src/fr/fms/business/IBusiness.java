@@ -3,6 +3,7 @@ package fr.fms.business;
 import java.util.ArrayList;
 
 import fr.fms.entities.Book;
+import fr.fms.entities.Order;
 import fr.fms.entities.Theme;
 
 public interface IBusiness {
@@ -63,4 +64,12 @@ public interface IBusiness {
 	 */
 	
 	public ArrayList<Book> readBookByTheme(int idTheme);
+	
+	/**
+	 * Returns every order that belongs to the specified client
+	 *@param the id of the selected client
+	 *@return arraylist of orders
+	 */
+	
+	public ArrayList<Order> readOrderByClient(int idClient);
 }

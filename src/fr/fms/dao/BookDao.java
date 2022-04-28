@@ -114,7 +114,7 @@ public class BookDao implements Dao<Book>{
 	}
 	
 	@Override
-	public ArrayList<Book> readByTheme(int idTheme){
+	public ArrayList<Book> readBookByTheme(int idTheme){
 		
 		ArrayList<Book> result = new ArrayList<Book>();
 		
@@ -130,6 +130,12 @@ public class BookDao implements Dao<Book>{
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
+	}
+
+	@Override
+	public ArrayList<Book> readOrderByClient(int id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

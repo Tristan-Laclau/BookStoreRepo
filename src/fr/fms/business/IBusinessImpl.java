@@ -49,7 +49,9 @@ public class IBusinessImpl implements IBusiness{
 	public void checkout(int idClient) {
 		if(clientDao.read(idClient) != null) {
 			Order order = new Order(idClient,getTotal());
+			System.out.println(getCart());
 			order.setBookList(getCart());
+			System.out.println(order.getBookList());
 			orderDao.create(order);
 			}
 		}
@@ -71,7 +73,7 @@ public class IBusinessImpl implements IBusiness{
 
 	@Override
 	public ArrayList<Book> readBookByTheme(int idTheme) {
-		return bookDao.readByTheme(idTheme);
+		return bookDao.readBookByTheme(idTheme);
 	}
 
 	public float getTotal() {
@@ -93,5 +95,9 @@ public class IBusinessImpl implements IBusiness{
 	
 	public void clearCart() {
 		cart.clear();
+	}
+	
+	public ArrayList<Order> readOrderByClient(int id){
+		return orderDao.readOrderByClient(id);
 	}
 }

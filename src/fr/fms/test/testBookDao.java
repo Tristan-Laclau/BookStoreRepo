@@ -44,7 +44,7 @@ public class testBookDao {
 			
 			System.out.println("On affiche les livres du thème 1");
 			
-			System.out.println(bookDao.readByTheme(1));
+			System.out.println(bookDao.readBookByTheme(1));
 
 
 		}catch(Exception e) {
