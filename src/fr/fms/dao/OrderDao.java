@@ -122,7 +122,7 @@ public class OrderDao implements Dao<Order> {
 	@Override
 	public ArrayList<Order> readOrderByClient(int id) {
 		ArrayList<Order> result = new ArrayList<Order>();
-		ArrayList<Book> bookList = new ArrayList<Book>();
+		ArrayList<Book> bookList;
 		BookDao bookDao = new BookDao();
 		
 		String str = "SELECT * FROM t_orders WHERE t_orders.idClient = " + id + " ;";
@@ -132,16 +132,21 @@ public class OrderDao implements Dao<Order> {
 				while (rs.next()) {
 					Order order = new Order(read(rs.getInt(1)));
 				
-		String bookRequest = "SELECT * FROM t_books JOIN order_details ON t_books.idBook = order_details.idBook WHERE order_details.idOrder = "+ rs.getInt(1) + " ;";
+		String bookRequest = "SELECT t_books.idBook , order_details.amount FROM t_books JOIN order_details ON t_books.idBook = order_details.idBook WHERE order_details.idOrder = "+ rs.getInt(1) + " ;";
 		Statement statementBookRequest = connection.createStatement();
 		statementBookRequest.execute(bookRequest);
 		
 		ResultSet resultSet = statementBookRequest.getResultSet();
+		bookList = new ArrayList<Book>();
 			while(resultSet.next()) {
-				bookList.add(bookDao.read(resultSet.getInt(1)));
+				Book newBook = new Book(bookDao.read(resultSet.getInt(1)));
+				newBook.setQuantity(resultSet.getInt(2));
+				bookList.add(newBook);
 			}
 			order.setBookList(bookList);
+			
 			result.add(order);
+			
 		}
 				
 				return result;

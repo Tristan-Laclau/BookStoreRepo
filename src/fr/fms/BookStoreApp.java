@@ -268,15 +268,17 @@ public class BookStoreApp {
 
 			System.out.println("Here are all the orders you placed so far");
 			for (Order o : job.readOrderByClient(idClient)) {
+				
 				System.out.println("Order #"+o.getIdOrder());
-				format  = "%1$-50s | %2$-20s | %3$-10s |\n";
-				System.out.format(format, "Title", "Author","Price");
-				System.out.println(String.join("", Collections.nCopies(90, "-")));
+				format  = "%1$-50s | %2$-20s | %3$-10s | %4$-10s |\n";
+				System.out.format(format, "Title", "Author","Price","Quantity");
+				System.out.println(String.join("", Collections.nCopies(100, "-")));
+				
 				for(Book b : o.getBookList()) {
-					System.out.format(format, b.getTitle(),b.getAuthor(),b.getPrice());	
+					System.out.format(format, b.getTitle(),b.getAuthor(),b.getPrice(),b.getQuantity());	
 				}
 				System.out.println("Total price : "+ o.getTotalPrice());
-				System.out.println(String.join("", Collections.nCopies(90, "-")));
+				System.out.println(String.join("", Collections.nCopies(100, "-")));
 			}
 			System.out.println();
 			displayMenu();

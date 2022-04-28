@@ -56,7 +56,6 @@ public class IBusinessImpl implements IBusiness{
 	public void checkout(int idClient) {
 		if(clientDao.read(idClient) != null) {
 			Order order = new Order(idClient,getTotal());
-			System.out.println(getCart());
 			order.setBookList(getCart());
 			orderDao.create(order);
 		}
