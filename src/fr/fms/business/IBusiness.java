@@ -11,16 +11,18 @@ public interface IBusiness {
 	/**
 	 * Adds a book to the cart
 	 * @param book
+	 * @return true if the book is added, false otherwise
 	 */
 	
-	public void addToCart(Book book);
+	public boolean addToCart(Book book);
 	
 	/**
 	 * Removes a book from the cart
 	 * @param book
+	 * @return true if the book is removed, false otherwise
 	 */
 	
-	public void removeFromCart(Book book);
+	public boolean removeFromCart(Book book);
 	
 	/**
 	 * Returns the content of the cart in an arraylist

@@ -13,8 +13,7 @@ public class ClientDao implements Dao<Client>{
 		try(Statement statement = connection.createStatement()){
 			String str = "INSERT INTO t_clients (firstname, lastname, email, password, address) "
 					+ "VALUES ('" +obj.getFirstName()+ "' ,'" + obj.getLastName() + "' , '" + obj.getEmail() + "' , '" + obj.getPassword() + "' , '"+ obj.getAddress()+"'  );";
-			int row = statement.executeUpdate(str);
-			if (row == 1) System.out.println("Insertion ok");
+			statement.executeUpdate(str);
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}

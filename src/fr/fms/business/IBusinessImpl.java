@@ -10,7 +10,7 @@ import fr.fms.entities.Order;
 import fr.fms.entities.Theme;
 
 public class IBusinessImpl implements IBusiness{
-	
+
 	private HashMap<Integer,Book> cart = new HashMap<Integer,Book>();
 	private Dao<Book> bookDao = DaoFactory.getBookDao();
 	private Dao<Client> clientDao = DaoFactory.getClientDao();
@@ -18,26 +18,33 @@ public class IBusinessImpl implements IBusiness{
 	private Dao<Theme> themeDao = DaoFactory.getThemeDao();
 
 	@Override
-	public void addToCart(Book book) {
-		
+	public boolean addToCart(Book book) {
+
 		Book newBook = cart.get(book.getIdBook());
 		if(newBook != null) {
 			newBook.setQuantity(newBook.getQuantity()+1);
 		}
 		else cart.put(book.getIdBook(), book);
+		
+		return true;
 	}
 
 	@Override
-	public void removeFromCart(Book book) {
-		Book newBook = cart.get(book.getIdBook());
-		if(newBook != null) {
-			if(newBook.getQuantity() == 1) cart.remove(newBook.getIdBook());
-			else {
-				newBook.setQuantity(newBook.getQuantity()-1);
-				cart.put(newBook.getIdBook(), newBook);
+	public boolean removeFromCart(Book book) {		
+		if (!cart.containsKey(book.getIdBook())) {
+			return false;
+		}else {
+			Book newBook = cart.get(book.getIdBook());
+			if(newBook != null) {
+				if(newBook.getQuantity() == 1) cart.remove(newBook.getIdBook());
+				else {
+					newBook.setQuantity(newBook.getQuantity()-1);
+					cart.put(newBook.getIdBook(), newBook);
+				}
 			}
+			return true;
 		}
-		
+
 	}
 
 	@Override
@@ -51,10 +58,9 @@ public class IBusinessImpl implements IBusiness{
 			Order order = new Order(idClient,getTotal());
 			System.out.println(getCart());
 			order.setBookList(getCart());
-			System.out.println(order.getBookList());
 			orderDao.create(order);
-			}
 		}
+	}
 
 	@Override
 	public ArrayList<Book> readAllBooks() {
@@ -81,22 +87,22 @@ public class IBusinessImpl implements IBusiness{
 		cart.values().forEach((b) -> total[0] += b.getPrice() * b.getQuantity());
 		return total[0];
 	}
-	
+
 	public boolean isClient(String email, String password) {
 		for (Client client : clientDao.readAll()) {
 			if(client.getEmail().equalsIgnoreCase(email) && client.getPassword().equals(password)) return true;
 		}
 		return false;
 	}
-	
+
 	public boolean isCartEmpty() {
 		return cart.isEmpty();
 	}
-	
+
 	public void clearCart() {
 		cart.clear();
 	}
-	
+
 	public ArrayList<Order> readOrderByClient(int id){
 		return orderDao.readOrderByClient(id);
 	}

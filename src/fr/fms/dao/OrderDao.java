@@ -15,8 +15,7 @@ public class OrderDao implements Dao<Order> {
 		try(Statement statement = connection.createStatement()){
 			String str = "INSERT INTO t_orders (idClient, price) "
 					+ "VALUES (" + obj.getIdClient() + " , " + obj.getTotalPrice() + " );";
-			int row = statement.executeUpdate(str);
-			if (row == 1) System.out.println("Insertion ok");
+			statement.executeUpdate(str);
 			
 			obj.setIdOrder(readAll().get(readAll().size()-1).getIdOrder());
 			

@@ -14,8 +14,7 @@ public class BookDao implements Dao<Book>{
 		try(Statement statement = connection.createStatement()){
 			String str = "INSERT INTO t_books (title, author, description, price) "
 					+ "VALUES ('" +obj.getTitle()+ "' ,'" + obj.getAuthor() + "' , '" + obj.getDescription() + "' , " + obj.getPrice() + " );";
-			int row = statement.executeUpdate(str);
-			if (row == 1) System.out.println("Insertion ok");
+			statement.executeUpdate(str);
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -41,11 +40,11 @@ public class BookDao implements Dao<Book>{
 				return book;
 				
 			}catch (Exception e) {
-				e.printStackTrace();
+				
 			}
 			
 		}catch (SQLException e) {
-			e.printStackTrace();
+			
 		}
 		return null;
 }
